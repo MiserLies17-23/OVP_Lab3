@@ -4,7 +4,7 @@
 public class MusicTheatre extends Theatre{
 
     /** Страна расположения театра */
-    private String _country;
+    private String _repertoire;
 
     /** Музыкальный директор */
     private String _musicDirector;
@@ -14,18 +14,18 @@ public class MusicTheatre extends Theatre{
      * @param name название театра
      * @param supervisorName имя худрука
      * @param rating рейтинг
-     * @param country страна расположения театра
+     * @param repertoire направление репертуара театра
      * @param musicDirector имя музыкального директора
      */
-    MusicTheatre(String name, String supervisorName, int rating, String country, String musicDirector) {
+    MusicTheatre(String name, String supervisorName, int rating, String repertoire, String musicDirector) {
         super(name, supervisorName, rating);
-        this._country = country;
+        this._repertoire = repertoire;
         this._musicDirector = musicDirector;
     }
 
     @Override
     public String getNewFirstSpecificField(String newSpecificField1) {
-        this._country = newSpecificField1;
+        this._repertoire = newSpecificField1;
         return print();
     }
 
@@ -38,7 +38,7 @@ public class MusicTheatre extends Theatre{
     @Override
     public String print() {
         String message = super.print();
-        message += "Страна: " + this._country + "\n";
+        message += "Репертуар: " + this._repertoire + "\n";
         message += "Музыкальный директор: " + this._musicDirector + "\n";
         return message;
     }
@@ -46,7 +46,7 @@ public class MusicTheatre extends Theatre{
     @Override
     public String fieldInformation() {
         String message = super.fieldInformation();
-        message += "4. Страна: " + this._country;
+        message += "4. Репертуар: " + this._repertoire;
         message += "5. Музыкальный директор: " + this._musicDirector;
         return message;
     }

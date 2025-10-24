@@ -171,16 +171,16 @@ public class UI {
         String supervisorName = _sc.nextLine();
         System.out.print("Введите рейтинг: ");
         int rating = Integer.parseInt(_sc.nextLine());
-        System.out.print("Введите страну: ");
-        String country = _sc.nextLine();
         System.out.print("Введите жанр: ");
         String genre = _sc.nextLine();
-        if (Validator.paramsValidate(name, supervisorName, rating)) {
-            Theatre.addDramaTheatre(name, supervisorName,  rating, country, genre);
+        System.out.print("Введите драматурга: ");
+        String playwriter = _sc.nextLine();
+        if (Validator.paramsValidate(name, supervisorName, rating, genre, playwriter)) {
+            Theatre.addDramaTheatre(name, supervisorName,  rating, genre, playwriter);
             System.out.println("Драматический театр успешно добавлен!\n");
         } else {
             System.out.println("Драматический театр не может быть добавлен! Ошибки:\n" +
-                    Validator.validateMessage(name, supervisorName, rating));
+                    Validator.validateMessage(name, supervisorName, rating, genre, playwriter));
         }
     }
 
@@ -194,16 +194,16 @@ public class UI {
         String supervisorName = _sc.nextLine();
         System.out.print("Введите рейтинг: ");
         int rating = Integer.parseInt(_sc.nextLine());
-        System.out.print("Введите страну: ");
-        String country = _sc.nextLine();
+        System.out.print("Введите репертуар: ");
+        String repertoire = _sc.nextLine();
         System.out.print("Введите музыкального директора: ");
         String musicDirector = _sc.nextLine();
-        if (Validator.paramsValidate(name, supervisorName, rating)) {
-            Theatre.addMusicTheatre(name, supervisorName, rating, country, musicDirector);
+        if (Validator.paramsValidate(name, supervisorName, rating, repertoire, musicDirector)) {
+            Theatre.addMusicTheatre(name, supervisorName, rating, repertoire, musicDirector);
             System.out.println("Музыкальный театр успешно добавлен!\n");
         } else {
             System.out.println("Музыкальный театр не может быть добавлен! Ошибки:\n" +
-                    Validator.validateMessage(name, supervisorName, rating));
+                    Validator.validateMessage(name, supervisorName, rating, repertoire, musicDirector));
         }
     }
 

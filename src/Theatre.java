@@ -19,10 +19,10 @@ public abstract class Theatre {
 
     // Заполнение списка тестовыми значениями
     static {
-        _array.add(new DramaTheatre("Большой театр", "Иванов", 95, "Россия", "Трагедия"));
-        _array.add(new DramaTheatre("МХТ", "Петров",  92, "Россия", "Драма"));
-        _array.add(new MusicTheatre("Метрополитен-опера", "Сидоров", 98, "Россия", "Джеймс Ливайн"));
-        _array.add(new MusicTheatre("Ла Скала", "Иванов", 96, "Франция", "Риккардо Шайи"));
+        _array.add(new DramaTheatre("Большой театр", "Иванов", 95, "Комедия", "Шекспир"));
+        _array.add(new DramaTheatre("МХТ", "Петров",  92, "Трагедия", "Евгеньев"));
+        _array.add(new MusicTheatre("Метрополитен-опера", "Сидоров", 98, "Опера", "Джеймс Ливайн"));
+        _array.add(new MusicTheatre("Ла Скала", "Иванов", 96, "Мюзикл", "Риккардо Шайи"));
     }
 
     //Theatre() {};
@@ -143,24 +143,24 @@ public abstract class Theatre {
      * Метод добавляет новый драматический театр в список театров
      * @param supervisorName имя художественного руководителя
      * @param name название театра
-     * @param country страна расположения театра
+     * @param playwright главный драматург театра
      * @param genre основной жанр
      * @param rating рейтинг театра
      */
-    public static void addDramaTheatre(String name, String supervisorName, int rating, String country, String genre) {
-        _array.add(new DramaTheatre(name, supervisorName, rating, country, genre));
+    public static void addDramaTheatre(String name, String supervisorName, int rating, String genre,String playwright ) {
+        _array.add(new DramaTheatre(name, supervisorName, rating, genre, playwright ));
     }
 
     /**
      * Метод добавляет новый музыкальный театр в список театров
      * @param supervisorName имя художественного театра
      * @param name название театра
-     * @param country страна расположения театра
+     * @param repertoire репертуар театра
      * @param musicDirector музыкальный директор
      * @param rating рейтинг театра
      */
-    public static void addMusicTheatre(String name, String supervisorName, int rating, String country, String musicDirector) {
-        _array.add(new MusicTheatre(name, supervisorName,rating, country, musicDirector));
+    public static void addMusicTheatre(String name, String supervisorName, int rating, String repertoire, String musicDirector) {
+        _array.add(new MusicTheatre(name, supervisorName,rating, repertoire, musicDirector));
     }
 
     /**

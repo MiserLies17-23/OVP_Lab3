@@ -10,18 +10,19 @@ public abstract class Validator {
      * @param rating рейтинг
      * @return булево значение соответствия параметров допустимым значениям
      */
-    public static boolean paramsValidate(String name, String supervisorName, int rating) {
-        return nameValidate(name) && supervisorNameValidate(supervisorName) && ratingValidate(rating);
+    public static boolean paramsValidate(String name, String supervisorName, int rating, String firstSpecificField, String secondSpecificField) {
+        return nameValidate(name) && personNameValidate(supervisorName) && ratingValidate(rating)
+                && stringFieldValidate(firstSpecificField) && personNameValidate(secondSpecificField);
     }
 
     /**
-     * Метод проверки имени художественного руководителя
-     * @param supervisorName имя худрука
+     * Метод проверки имени деятеля
+     * @param personName имя деятеля
      * @return значение соответствия имени
      */
-    public static boolean supervisorNameValidate(String supervisorName) {
+    public static boolean personNameValidate(String personName) {
         String nameRegex = "[А-ЯЁ][а-яё]+(\\s[А-ЯЁ][а-яё]+)*";
-        return supervisorName.matches(nameRegex);
+        return personName.matches(nameRegex);
     }
 
     /**
@@ -43,6 +44,11 @@ public abstract class Validator {
         return name.matches(nameRegex);
     }
 
+    public static boolean stringFieldValidate(String stringField) {
+        String regex = "[А-Яа-яёЁ]*[а-яё]+";
+        return stringField.matches(regex);
+    }
+
     /**
      * Метод вывода сообщения о результатах валидации
      * @param name название
@@ -50,15 +56,19 @@ public abstract class Validator {
      * @param rating рейтинг
      * @return булево значение соответствия параметров допустимым значениям
      */
-    public static String validateMessage(String name, String supervisorName, int rating) {
+    public static String validateMessage(String name, String supervisorName, int rating, String firstSpecificField, String secondSpecificField) {
         String message = "";
-        if (!paramsValidate(name, supervisorName, rating)) {
+        if (!paramsValidate(name, supervisorName, rating, firstSpecificField, secondSpecificField)) {
             if (!nameValidate(name))
-                message += "Неверное название театра!\n";
-            if (!supervisorNameValidate(supervisorName))
-                message += "Неверное имя художественного руководителя!\n";
+                message += "Поле 1: Неверное название театра!\n";
+            if (!personNameValidate(supervisorName))
+                message += "Поле 2: Неверное имя художественного руководителя!\n";
             if (!ratingValidate(rating))
-                message += "Рейтинг не может быть меньше 0 и больше 100!\n";
+                message += "Поле 3: Рейтинг не может быть меньше 0 и больше 100!\n";
+            if (!stringFieldValidate(firstSpecificField))
+                message += "Поле 4: Введённое значение содержит недопустимые символы!\n";
+            if (!personNameValidate(secondSpecificField))
+                message += "Поле 5: Недопустимое значение для имени!";
         } else {
             message = "Все значения верны!";
         }

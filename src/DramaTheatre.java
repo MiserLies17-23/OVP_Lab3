@@ -3,29 +3,29 @@
  */
 public class DramaTheatre extends Theatre {
 
-    /** Страна расположения театра */
-    private String _country;
-
     /** Основной жанр театра */
     private String _genre;
+
+    /** Страна расположения театра */
+    private String _playwright;
 
     /**
      * Конструктор с параметрами
      * @param name название театра
      * @param supervisorName имя худрука
      * @param rating рейтинг театра
-     * @param country страна расположения театра
+     * @param playwright драматург театра
      * @param genre основной жанр
      */
-    DramaTheatre(String name, String supervisorName, int rating, String country, String genre) {
+    DramaTheatre(String name, String supervisorName, int rating,String genre, String playwright) {
         super(name, supervisorName, rating);
-        this._country = country;
         this._genre = genre;
+        this._playwright = playwright;
     }
 
     @Override
-    public String getNewFirstSpecificField(String newCountry) {
-        this._country = newCountry;
+    public String getNewFirstSpecificField(String newPlaywright) {
+        this._playwright = newPlaywright;
         return print();
     }
 
@@ -38,16 +38,16 @@ public class DramaTheatre extends Theatre {
     @Override
     public String print() {
         String message = super.print();
-        message += "Страна: " + this._country + "\n";
         message += "Жанр: " + this._genre + "\n";
+        message += "Драматург: " + this._playwright + "\n";
         return message;
     }
 
     @Override
     public String fieldInformation() {
         String message = super.fieldInformation();
-        message += "4. Страна: " + this._country + "\n";
-        message += "5. Жанр: " + this._genre + "\n";
+        message += "4. Жанр: " + this._genre + "\n";
+        message += "5. Драматург: " + this._playwright + "\n";
         return message;
     }
 }
