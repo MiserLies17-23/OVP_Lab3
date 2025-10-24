@@ -10,6 +10,15 @@ public class MusicTheatre extends Theatre{
     private String _musicDirector;
 
     /**
+     * Конструктор по умолчанию
+     */
+    MusicTheatre() {
+        super();
+        this._repertoire = "Не задано";
+        this._musicDirector = "Не задано";
+    }
+
+    /**
      * Конструктор с параметрами
      * @param name название театра
      * @param supervisorName имя худрука

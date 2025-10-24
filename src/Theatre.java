@@ -25,7 +25,14 @@ public abstract class Theatre {
         _array.add(new MusicTheatre("Ла Скала", "Иванов", 96, "Мюзикл", "Риккардо Шайи"));
     }
 
-    //Theatre() {};
+    /**
+     * Конструктор по умолчанию
+     */
+    Theatre() {
+        this._name = "Не задано";
+        this._supervisorName = "Не задано";
+        this._rating = 0;
+    }
 
     /**
      * Конструктор с параметрами
@@ -34,7 +41,7 @@ public abstract class Theatre {
      * @param name название театра
      */
     Theatre(String name, String supervisorName, int rating) {
-        //this();
+        this();
         this._name = name;
         this._supervisorName = supervisorName;
         this._rating = rating;

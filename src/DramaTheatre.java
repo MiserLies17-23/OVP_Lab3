@@ -10,6 +10,15 @@ public class DramaTheatre extends Theatre {
     private String _playwright;
 
     /**
+     * Конструктор по умолчанию
+     */
+    DramaTheatre() {
+        super();
+        this._genre = "Не задано";
+        this._playwright = "Не задано";
+    }
+
+    /**
      * Конструктор с параметрами
      * @param name название театра
      * @param supervisorName имя худрука
