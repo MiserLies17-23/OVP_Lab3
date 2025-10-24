@@ -164,6 +164,14 @@ public abstract class Theatre {
     }
 
     /**
+     * Метод удаляет театр из списка
+     * @param index индекс театра
+     */
+    public static void removeByIndex(int index) {
+        _array.remove(index);
+    }
+
+    /**
      * Метод возвращает все театры в списке
      * @return строка с информацией обо всех театрах
      */

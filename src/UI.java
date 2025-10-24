@@ -125,15 +125,24 @@ public class UI {
                 System.out.println("Выберите действие: ");
                 System.out.println("1. Посмотреть информацию о театре");
                 System.out.println("2. Редактировать данные о театре");
+                System.out.println("3. Удалить театр");
                 System.out.println("Для возвращения введите пустую строку...");
                 System.out.print("Ваше действие: ");
                 String choice = _sc.nextLine();
-                if (choice.equals("1")) {
-                    System.out.println(Theatre.findByIndex(index - 1));
-                } else if (choice.equals("2")) {
-                    fieldReplacement(index-1);
-                } else {
-                    System.out.println("Указан неверный номер театра!\n");
+                switch (choice) {
+                    case "1":
+                        System.out.println(Theatre.findByIndex(index - 1));
+                        break;
+                    case "2":
+                        fieldReplacement(index - 1);
+                        break;
+                    case "3":
+                        Theatre.removeByIndex(index - 1);
+                        System.out.println("Театр удалён!");
+                        break;
+                    default:
+                        System.out.println("Указан неверный номер театра!\n");
+                        break;
                 }
             } else {
                 System.out.println("Действие невозможно: список пуст!\n");
