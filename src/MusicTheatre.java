@@ -1,3 +1,6 @@
+/**
+ * Класс Музыкальный театр
+ */
 public class MusicTheatre extends Theatre{
 
     /** Страна расположения театра */
@@ -6,6 +9,14 @@ public class MusicTheatre extends Theatre{
     /** Музыкальный директор */
     private String _musicDirector;
 
+    /**
+     * Конструктор с параметрами
+     * @param name название театра
+     * @param supervisorName имя худрука
+     * @param rating рейтинг
+     * @param country страна расположения театра
+     * @param musicDirector имя музыкального директора
+     */
     MusicTheatre(String name, String supervisorName, int rating, String country, String musicDirector) {
         super(name, supervisorName, rating);
         this._country = country;

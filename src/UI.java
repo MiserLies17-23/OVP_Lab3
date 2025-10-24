@@ -18,7 +18,7 @@ public class UI {
     /**
      * Выводит информационное сообщение в начале работы программы
      */
-    public void getInformationMessage() {
+    private void getInformationMessage() {
         System.out.println("Лабораторная работа №3");
         System.out.println("Бригада 13: Медведев А., Толстоухов В.");
         System.out.println("Вариант 13: Театры\n");
@@ -27,7 +27,7 @@ public class UI {
     /**
      * Выводит список возможностей приложения
      */
-    public void menu() {
+    private void menu() {
         System.out.println("Выберите действие:");
         System.out.println("1. Добавить театр");
         System.out.println("2. Вывести все театры");
@@ -44,42 +44,42 @@ public class UI {
      */
     public void run() {
         getInformationMessage();
-        try {
+
             menu();
             String choice = _sc.nextLine();
-
             while (!choice.isEmpty()) {
-                switch (choice) {
-                    case "1":
-                        addNewTheatre();
-                        break;
-                    case "2":
-                        System.out.print(Theatre.showAll());
-                        break;
-                    case "3":
-                        findBySupervisor();
-                        break;
-                    case "4":
-                        determineTheHighestRating();
-                        break;
-                    case "5":
-                        System.out.print(Theatre.sortByNameReverse());
-                        break;
-                    case "6" :
-                        interactionWithTheatre();
-                        break;
-                    default:
-                        System.out.println("Действие не распознано!\n");
-                        break;
+                try {
+                    switch (choice) {
+                        case "1":
+                            addNewTheatre();
+                            break;
+                        case "2":
+                            System.out.print(Theatre.showAll());
+                            break;
+                        case "3":
+                            findBySupervisor();
+                            break;
+                        case "4":
+                            determineTheHighestRating();
+                            break;
+                        case "5":
+                            System.out.print(Theatre.sortByNameReverse());
+                            break;
+                        case "6" :
+                            interactionWithTheatre();
+                            break;
+                        default:
+                            System.out.println("Действие не распознано!\n");
+                            break;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Ошибка ввода данных: " + e.getMessage());
                 }
                 menu();
-
                 choice = _sc.nextLine();
             }
             System.out.println("Вы вышли из программы!");
-        } catch (Exception e) {
-            System.out.println("Ошибка ввода данных: " + e.getMessage());
-        }
+
     }
 
     /**
@@ -166,8 +166,13 @@ public class UI {
         String country = _sc.nextLine();
         System.out.print("Введите жанр: ");
         String genre = _sc.nextLine();
-        Theatre.addDramaTheatre(name, supervisorName,  rating, country, genre);
-        System.out.println("Драматический театр успешно добавлен!\n");
+        if (Validator.paramsValidate(name, supervisorName, rating)) {
+            Theatre.addDramaTheatre(name, supervisorName,  rating, country, genre);
+            System.out.println("Драматический театр успешно добавлен!\n");
+        } else {
+            System.out.println("Драматический театр не может быть добавлен! Ошибки:\n" +
+                    Validator.validateMessage(name, supervisorName, rating));
+        }
     }
 
     /**
@@ -184,9 +189,13 @@ public class UI {
         String country = _sc.nextLine();
         System.out.print("Введите музыкального директора: ");
         String musicDirector = _sc.nextLine();
-
-        Theatre.addMusicTheatre(name, supervisorName, rating, country, musicDirector);
-        System.out.println("Музыкальный театр успешно добавлен!\n");
+        if (Validator.paramsValidate(name, supervisorName, rating)) {
+            Theatre.addMusicTheatre(name, supervisorName, rating, country, musicDirector);
+            System.out.println("Музыкальный театр успешно добавлен!\n");
+        } else {
+            System.out.println("Музыкальный театр не может быть добавлен! Ошибки:\n" +
+                    Validator.validateMessage(name, supervisorName, rating));
+        }
     }
 
     /**

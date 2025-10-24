@@ -17,8 +17,8 @@ public abstract class Theatre {
     /** Список театров */
     protected static ArrayList<Theatre> _array = new ArrayList<>();
 
+    // Заполнение списка тестовыми значениями
     static {
-        // Инициализация тестовыми данными
         _array.add(new DramaTheatre("Большой театр", "Иванов", 95, "Россия", "Трагедия"));
         _array.add(new DramaTheatre("МХТ", "Петров",  92, "Россия", "Драма"));
         _array.add(new MusicTheatre("Метрополитен-опера", "Сидоров", 98, "Россия", "Джеймс Ливайн"));
@@ -127,8 +127,16 @@ public abstract class Theatre {
      * @return информация о списке после сортировки
      */
     public static String sortByNameReverse() {
-        _array.sort((t1, t2) -> t2._name.compareToIgnoreCase(t1._name));
-        return "Список отсортирован по именам в обратном порядке:\n" + showAll();
+        if (!_array.isEmpty()) {
+            ArrayList<Theatre> reverseSortArray = new ArrayList<>(_array);
+            reverseSortArray.sort((t1, t2) -> t2._name.compareToIgnoreCase(t1._name));
+            String message = "Список отсортирован по именам в обратном порядке:\n";
+            for (int i = 0; i < reverseSortArray.size(); i++)
+                message += (i + 1) + ". " + reverseSortArray.get(i).print() + "\n";
+            return message;
+        } else {
+            return "Действие невозможно: список пуст!";
+        }
     }
 
     /**
@@ -139,7 +147,7 @@ public abstract class Theatre {
      * @param genre основной жанр
      * @param rating рейтинг театра
      */
-    public static void addDramaTheatre(String supervisorName, String name, int rating, String country, String genre) {
+    public static void addDramaTheatre(String name, String supervisorName, int rating, String country, String genre) {
         _array.add(new DramaTheatre(name, supervisorName, rating, country, genre));
     }
 
@@ -151,7 +159,7 @@ public abstract class Theatre {
      * @param musicDirector музыкальный директор
      * @param rating рейтинг театра
      */
-    public static void addMusicTheatre(String supervisorName, String name, int rating, String country, String musicDirector) {
+    public static void addMusicTheatre(String name, String supervisorName, int rating, String country, String musicDirector) {
         _array.add(new MusicTheatre(name, supervisorName,rating, country, musicDirector));
     }
 
@@ -201,6 +209,11 @@ public abstract class Theatre {
         return findBySupervisorName(supervisorName);
     }
 
+    /**
+     * Метод поиска театра по индексу
+     * @param index индекс театра
+     * @return информация о театре
+     */
     public static String findByIndex(int index) {
         return _array.get(index).print();
     }

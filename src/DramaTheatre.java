@@ -1,3 +1,6 @@
+/**
+ * Класс Драматический театр
+ */
 public class DramaTheatre extends Theatre {
 
     /** Страна расположения театра */
