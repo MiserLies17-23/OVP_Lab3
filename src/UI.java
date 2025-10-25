@@ -35,7 +35,7 @@ public class UI {
         System.out.println("4. Определить театр с самым большим рейтингом");
         System.out.println("5. Сортировать театры по названию в обратном порядке");
         System.out.println("6. Выбрать театр");
-        System.out.println("Для выхода введите пустую строку...");
+        System.out.println("0. Выход");
         System.out.print("Ваше действие: ");
     }
 
@@ -44,42 +44,42 @@ public class UI {
      */
     public void run() {
         getInformationMessage();
-
-            menu();
-            String choice = _sc.nextLine();
-            while (!choice.isEmpty()) {
-                try {
-                    switch (choice) {
-                        case "1":
-                            addNewTheatre();
-                            break;
-                        case "2":
-                            System.out.print(Theatre.showAll());
-                            break;
-                        case "3":
-                            findBySupervisor();
-                            break;
-                        case "4":
-                            determineTheHighestRating();
-                            break;
-                        case "5":
-                            System.out.print(Theatre.sortByNameReverse());
-                            break;
-                        case "6" :
-                            interactionWithTheatre();
-                            break;
-                        default:
-                            System.out.println("Действие не распознано!\n");
-                            break;
-                    }
-                } catch (Exception e) {
-                    System.out.println("Ошибка ввода данных: " + e.getMessage());
+        menu();
+        String choice = _sc.nextLine();
+        while (!choice.equals("0")) {
+            try {
+                switch (choice) {
+                    case "1":
+                        addNewTheatre();
+                        break;
+                    case "2":
+                        System.out.print(Theatre.showAll());
+                        break;
+                    case "3":
+                        findBySupervisor();
+                        break;
+                    case "4":
+                        determineTheHighestRating();
+                        break;
+                    case "5":
+                        System.out.print(Theatre.sortByNameReverse());
+                        break;
+                    case "6" :
+                        interactionWithTheatre();
+                        break;
+                    case "":
+                        throw new Exception("пустая строка");
+                    default:
+                        System.out.println("Действие не распознано!\n");
+                        break;
                 }
-                menu();
-                choice = _sc.nextLine();
+            } catch (Exception e) {
+                System.out.println("Ошибка ввода данных: " + e.getMessage());
             }
-            System.out.println("Вы вышли из программы!");
-
+            menu();
+            choice = _sc.nextLine();
+        }
+        System.out.println("Вы вышли из программы!");
     }
 
     /**
@@ -116,17 +116,20 @@ public class UI {
     /**
      * Метод взаимодействия с театрами
      */
-    private void interactionWithTheatre() {
+    private void interactionWithTheatre() throws Exception {
         if (!Theatre._array.isEmpty()) {
-            System.out.println(Theatre.showAll());
+            System.out.print(Theatre.showAll());
             System.out.print("Выберите театр: ");
-            int index = Integer.parseInt(_sc.nextLine());
+            String input = _sc.nextLine();
+            if (input.isEmpty())
+                throw new Exception("пустая строка");
+            int index = Integer.parseInt(input);
             if (1 <= index && index <= Theatre.getSize()) {
                 System.out.println("Выберите действие: ");
                 System.out.println("1. Посмотреть информацию о театре");
                 System.out.println("2. Редактировать данные о театре");
                 System.out.println("3. Удалить театр");
-                System.out.println("Для возвращения введите пустую строку...");
+                System.out.println("0. Вернуться в главное меню");
                 System.out.print("Ваше действие: ");
                 String choice = _sc.nextLine();
                 switch (choice) {
@@ -139,6 +142,10 @@ public class UI {
                     case "3":
                         System.out.println(Theatre.removeByIndex(index - 1));
                         break;
+                    case "0":
+                        System.out.println("Возвращение в главное меню...");
+                    case "":
+                        throw new Exception("пустая строка");
                     default:
                         System.out.println("Указан неверный номер театра!\n");
                         break;

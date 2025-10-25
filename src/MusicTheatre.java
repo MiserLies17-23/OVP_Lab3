@@ -3,7 +3,7 @@
  */
 public class MusicTheatre extends Theatre{
 
-    /** Страна расположения театра */
+    /** Направленность репертуара театра */
     private String _repertoire;
 
     /** Музыкальный директор */

@@ -6,7 +6,7 @@ public class DramaTheatre extends Theatre {
     /** Основной жанр театра */
     private String _genre;
 
-    /** Страна расположения театра */
+    /** Главный драматург театра */
     private String _playwright;
 
     /**
