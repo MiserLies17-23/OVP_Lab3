@@ -154,8 +154,9 @@ public abstract class Theatre {
      * @param genre основной жанр
      * @param rating рейтинг театра
      */
-    public static void addDramaTheatre(String name, String supervisorName, int rating, String genre,String playwright ) {
+    public static String addDramaTheatre(String name, String supervisorName, int rating, String genre,String playwright ) {
         _array.add(new DramaTheatre(name, supervisorName, rating, genre, playwright ));
+        return "Драматический театр добавлен!";
     }
 
     /**
@@ -166,16 +167,18 @@ public abstract class Theatre {
      * @param musicDirector музыкальный директор
      * @param rating рейтинг театра
      */
-    public static void addMusicTheatre(String name, String supervisorName, int rating, String repertoire, String musicDirector) {
+    public static String addMusicTheatre(String name, String supervisorName, int rating, String repertoire, String musicDirector) {
         _array.add(new MusicTheatre(name, supervisorName,rating, repertoire, musicDirector));
+        return "Музыкальный театр добавлен!";
     }
 
     /**
      * Метод удаляет театр из списка
      * @param index индекс театра
      */
-    public static void removeByIndex(int index) {
+    public static String removeByIndex(int index) {
         _array.remove(index);
+        return "Театр удалён!";
     }
 
     /**

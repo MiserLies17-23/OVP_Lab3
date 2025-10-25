@@ -137,8 +137,7 @@ public class UI {
                         fieldReplacement(index - 1);
                         break;
                     case "3":
-                        Theatre.removeByIndex(index - 1);
-                        System.out.println("Театр удалён!");
+                        System.out.println(Theatre.removeByIndex(index - 1));
                         break;
                     default:
                         System.out.println("Указан неверный номер театра!\n");
@@ -176,8 +175,7 @@ public class UI {
         System.out.print("Введите драматурга: ");
         String playwriter = _sc.nextLine();
         if (Validator.paramsValidate(name, supervisorName, rating, genre, playwriter)) {
-            Theatre.addDramaTheatre(name, supervisorName,  rating, genre, playwriter);
-            System.out.println("Драматический театр успешно добавлен!\n");
+            System.out.println(Theatre.addDramaTheatre(name, supervisorName,  rating, genre, playwriter));
         } else {
             System.out.println("Драматический театр не может быть добавлен! Ошибки:\n" +
                     Validator.validateMessage(name, supervisorName, rating, genre, playwriter));
@@ -199,8 +197,7 @@ public class UI {
         System.out.print("Введите музыкального директора: ");
         String musicDirector = _sc.nextLine();
         if (Validator.paramsValidate(name, supervisorName, rating, repertoire, musicDirector)) {
-            Theatre.addMusicTheatre(name, supervisorName, rating, repertoire, musicDirector);
-            System.out.println("Музыкальный театр успешно добавлен!\n");
+            System.out.println(Theatre.addMusicTheatre(name, supervisorName, rating, repertoire, musicDirector));
         } else {
             System.out.println("Музыкальный театр не может быть добавлен! Ошибки:\n" +
                     Validator.validateMessage(name, supervisorName, rating, repertoire, musicDirector));

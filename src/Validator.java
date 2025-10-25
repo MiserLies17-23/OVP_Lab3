@@ -44,6 +44,11 @@ public abstract class Validator {
         return name.matches(nameRegex);
     }
 
+    /**
+     * Метод проверки строкового поля
+     * @param stringField строковое поле
+     * @return булева переменная соответствия строки шаблону
+     */
     public static boolean stringFieldValidate(String stringField) {
         String regex = "[А-Яа-яёЁ]*[а-яё]+";
         return stringField.matches(regex);
